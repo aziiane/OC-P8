@@ -1,12 +1,18 @@
 const decimalInput = document.querySelector('#decimalInput');
 const binaryResult = document.querySelector('#binaryResult');
+
 function convertToBinary() {
-    binaryResult.textContent = '';
-    const decimalValue = Number(decimalInput.value);
-    const binaryValue = decimalValue.toString(2);
-    if (isNaN(decimalValue)) {
-        return;
+    let decimalValue = decimalInput.value
+    if (decimalValue === 0) {
+        return '0';
     }
-    binaryResult.textContent = binaryValue;
-    return binaryValue;
+
+    let binary = 0;
+    while (decimalValue > 0) {
+        let remainder = decimalValue % 2;
+        binary = remainder + binary;
+        decimalValue = Math.floor(decimalValue / 2);
+    }
+    binaryResult.textContent = binary;
+    return binary;
 }
